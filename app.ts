@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { removeElement } from "./src/topInterview150/2.removeElement";
+import { removeDuplicates } from "./src/topInterview150/3.removeDupliatesFromSortedArray";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -44,5 +44,8 @@ import { removeElement } from "./src/topInterview150/2.removeElement";
 
 // topInterview150 ===========================
 
-const result = removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
-console.log("removeElement ==== ", result);
+// const result = removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
+// console.log("removeElement ==== ", result);
+
+const result = removeDuplicates([1, 1, 2]);
+console.log("removeDuplicates ==== ", result);
