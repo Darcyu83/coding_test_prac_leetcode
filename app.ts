@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { removeDuplicates2 } from "./src/topInterview150/4.removeDuplicatesFromUnsortedArray";
+import { majorityElement } from "./src/topInterview150/5.majorityElement";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -49,5 +49,7 @@ import { removeDuplicates2 } from "./src/topInterview150/4.removeDuplicatesFromU
 
 // const result = removeDuplicates([1, 1, 2]);
 
-const result = removeDuplicates2([0, 0, 1, 1, 1, 1, 2, 3, 3]);
+// const result = removeDuplicates2([0, 0, 1, 1, 1, 1, 2, 3, 3]);
+
+const result = majorityElement([2, 2, 1, 1, 1, 2, 2]);
 console.log("removeDuplicates2 ==== ", result);
