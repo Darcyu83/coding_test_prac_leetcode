@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { rotateArry } from "./src/topInterview150/6.rotateArray";
+import { maxProfit } from "./src/topInterview150/7.bestTimeToBuyAndSellStock";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -53,5 +53,9 @@ import { rotateArry } from "./src/topInterview150/6.rotateArray";
 
 // const result = majorityElement([2, 2, 1, 1, 1, 2, 2]);
 
-const result = rotateArry([1, 2, 3, 4, 5, 6, 7], 3);
-console.log("removeDuplicates2 ==== ", result);
+// const result = rotateArry([1, 2, 3, 4, 5, 6, 7], 3);
+
+// const result = maxProfit([7, 1, 5, 3, 6, 4]);
+// const result = maxProfit([2, 4, 1]);
+const result = maxProfit([2, 1, 2, 1, 0, 1, 2, 0, 1]);
+console.log("result ==== ", result);
