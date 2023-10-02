@@ -55,7 +55,7 @@ import { maxProfit } from "./src/topInterview150/7.bestTimeToBuyAndSellStock";
 
 // const result = rotateArry([1, 2, 3, 4, 5, 6, 7], 3);
 
-// const result = maxProfit([7, 1, 5, 3, 6, 4]);
+const result = maxProfit([7, 1, 5, 3, 6, 4]);
 // const result = maxProfit([2, 4, 1]);
-const result = maxProfit([2, 1, 2, 1, 0, 1, 2, 0, 1]);
+// const result = maxProfit([2, 1, 2, 1, 0, 1, 2, 0, 1]);
 console.log("result ==== ", result);
