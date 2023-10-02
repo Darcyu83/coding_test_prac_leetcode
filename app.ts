@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { maxProfit } from "./src/topInterview150/7.bestTimeToBuyAndSellStock";
+import { maxProfit2 } from "./src/topInterview150/8.bestTimeToBuyAndSellStock2";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -55,7 +55,10 @@ import { maxProfit } from "./src/topInterview150/7.bestTimeToBuyAndSellStock";
 
 // const result = rotateArry([1, 2, 3, 4, 5, 6, 7], 3);
 
-const result = maxProfit([7, 1, 5, 3, 6, 4]);
+// const result = maxProfit([7, 1, 5, 3, 6, 4]);
 // const result = maxProfit([2, 4, 1]);
 // const result = maxProfit([2, 1, 2, 1, 0, 1, 2, 0, 1]);
+
+// const result = maxProfit2([7, 1, 5, 3, 6, 4]);
+const result = maxProfit2([1, 2, 3, 4, 5]);
 console.log("result ==== ", result);
