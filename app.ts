@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { maxProfit2 } from "./src/topInterview150/8.bestTimeToBuyAndSellStock2";
+import { canJump } from "./src/topInterview150/9.jumpGame";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -60,5 +60,9 @@ import { maxProfit2 } from "./src/topInterview150/8.bestTimeToBuyAndSellStock2";
 // const result = maxProfit([2, 1, 2, 1, 0, 1, 2, 0, 1]);
 
 // const result = maxProfit2([7, 1, 5, 3, 6, 4]);
-const result = maxProfit2([1, 2, 3, 4, 5]);
+// const result = maxProfit2([1, 2, 3, 4, 5]);
+
+// const result = canJump([2, 3, 1, 1, 4]);
+// const result = canJump([3, 2, 1, 0, 4]);
+const result = canJump([0, 1]);
 console.log("result ==== ", result);
