@@ -1,11 +1,15 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { canJump } from "./src/topInterview150/9.jumpGame";
+import { lengthOfLongestSubstring } from "./src/leetcode75/longestSubstring";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
 
+// ============================================================
+
+// const result = addTwoLinkedNumbers([2, 4, 3], [5, 6, 4]);
+const result = lengthOfLongestSubstring("pwwkew");
 // ============================================================
 // const originNum1 = 342;
 // const originNum2 = 465;
@@ -64,5 +68,5 @@ import { canJump } from "./src/topInterview150/9.jumpGame";
 
 // const result = canJump([2, 3, 1, 1, 4]);
 // const result = canJump([3, 2, 1, 0, 4]);
-const result = canJump([0, 1]);
+// const result = canJump([0, 1]);
 console.log("result ==== ", result);

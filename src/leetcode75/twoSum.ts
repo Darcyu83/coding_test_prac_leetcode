@@ -93,17 +93,17 @@
 
 //   return [];
 // }
-
+const twoSumArr = [3, 2, 3];
 export function twoSum(nums: number[], target: number): number[] {
   const obj: Record<number, number> = {};
 
-  for (let i = 0; i < nums.length; i++) {
-    let complement = target - nums[i];
+  for (let index = 0; index < nums.length; index++) {
+    let complement = target - nums[index];
     if (complement in obj) {
-      return [obj[complement], i];
+      return [obj[complement], index];
     }
 
-    obj[nums[i]] = i;
+    obj[nums[index]] = index;
   }
 
   return [];
