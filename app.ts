@@ -1,7 +1,9 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { lengthOfLongestSubstring } from "./src/leetcode75/longestSubstring";
+import { reverseBetween } from "./src/leetcode75/linkedListReverseBetween2";
+import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
+import { makeLinkedNodeHead } from "./src/utils/listNode";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -9,7 +11,7 @@ import { lengthOfLongestSubstring } from "./src/leetcode75/longestSubstring";
 // ============================================================
 
 // const result = addTwoLinkedNumbers([2, 4, 3], [5, 6, 4]);
-const result = lengthOfLongestSubstring("pwwkew");
+// const result = lengthOfLongestSubstring("pwwkew");
 // ============================================================
 // const originNum1 = 342;
 // const originNum2 = 465;
@@ -69,4 +71,23 @@ const result = lengthOfLongestSubstring("pwwkew");
 // const result = canJump([2, 3, 1, 1, 4]);
 // const result = canJump([3, 2, 1, 0, 4]);
 // const result = canJump([0, 1]);
+
+// const result = runningSum([1, 2, 3, 4]);
+
+// 로또 번호
+const result = makeLottery5GamesWithoutNumbersInFirstGame();
 console.log("result ==== ", result);
+
+// getMinFixedPointOnChessBorad();
+
+// console.log(minWindow("ADOBECODEBANC", "ABC"));
+
+let head = makeLinkedNodeHead(5);
+const newHead = reverseBetween(head, 2, 4);
+
+let currNode = newHead;
+
+while (currNode) {
+  console.log(currNode);
+  currNode = currNode.next;
+}

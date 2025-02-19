@@ -1,7 +1,7 @@
 import path from "path";
 
 const filePath = path.join(__dirname, "lotteryNumbers.txt");
-const prevNums: number[][] = require("fs")
+const prevGames: number[][] = require("fs")
   .readFileSync(filePath)
   .toString()
   .trim()
@@ -32,7 +32,8 @@ const selectRandomNums = (nums: number[], qnty = 6) => {
 };
 
 const lotteryNumPool = Array.from({ length: 45 }).map((_, index) => index + 1);
-const makeLottery5GamesWithoutNumbersInFirstGame = (prevGames: number[][]) => {
+export const makeLottery5GamesWithoutNumbersInFirstGame = () => {
+  // _: number[][]
   const alreadySlected = prevGames.reduce((set, gameNums) => {
     gameNums.forEach((num) => set.add(num));
     return set;
@@ -45,23 +46,24 @@ const makeLottery5GamesWithoutNumbersInFirstGame = (prevGames: number[][]) => {
     newGames.push(selectRandomNums(restedNums));
   }
 
-  for (let i = 0; i < Math.ceil(Math.random() * GAME_QNTY); i++) {
-    const numIdx = Math.floor(Math.random() * NUM_SELECT_QNTY);
+  // 1게임만 첫번째 5게임중 선택된 번호 랜덤으로 1개 바꿔넣음 -> 2줄(게임)까지만 바꿈
+  for (let i = 0; i < Math.ceil(Math.random() * 2); i++) {
+    const idxBeSwapped = Math.floor(Math.random() * NUM_SELECT_QNTY);
     const selectedNumArr = Array.from(alreadySlected);
     const numSwapped =
       selectedNumArr[Math.floor(Math.random() * selectedNumArr.length)];
-
     console.log("numSwapped ==== ", numSwapped);
-    newGames[i][numIdx] = numSwapped;
+    newGames[i][idxBeSwapped] = numSwapped;
 
     newGames[i] = newGames[i].sort((a, b) => a - b);
   }
+
   return newGames;
 };
 
-console.log("prevNums ==== ", prevNums);
+// console.log("prevNums ==== ", prevNums);
 
-export default () => makeLottery5GamesWithoutNumbersInFirstGame(prevNums);
+// export default () => makeLottery5GamesWithoutNumbersInFirstGame();
 
 // console.time("lotto");
 // const lottoDrawing = [10, 16, 19, 27, 37, 38];
