@@ -20,3 +20,29 @@ export function swapPairs(head: ListNode | null): ListNode | null {
 
   return dummy.next;
 }
+
+export function swapPairs2(head: ListNode | null): ListNode | null {
+  let newHead: ListNode | null = null;
+
+  let prev: ListNode | null = null;
+  let slow = head;
+  while (slow && slow.next) {
+    let fast: ListNode | null = slow.next;
+    let temp: ListNode | null = fast;
+
+    slow.next = fast;
+    if (temp) {
+      temp.next = slow;
+    }
+
+    if (prev) {
+      (prev as ListNode).next = temp;
+    } else {
+      newHead = temp;
+    }
+
+    prev = slow;
+    slow = fast;
+  }
+  return newHead;
+}

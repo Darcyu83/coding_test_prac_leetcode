@@ -1,9 +1,8 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { reverseBetween } from "./src/leetcode75/linkedListReverseBetween2";
+import { largestRectangleArea } from "./src/leetcode75/largestRectagleInHistogram";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { makeLinkedNodeHead } from "./src/utils/listNode";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -82,12 +81,29 @@ console.log("result ==== ", result);
 
 // console.log(minWindow("ADOBECODEBANC", "ABC"));
 
-let head = makeLinkedNodeHead(5);
-const newHead = reverseBetween(head, 2, 4);
+// Linked list solution ;;
+// let head = makeLinkedNodeHead(5);
+// const newHead = reverseBetween(head, 2, 4);
 
-let currNode = newHead;
+// let currNode = newHead;
 
-while (currNode) {
-  console.log(currNode);
-  currNode = currNode.next;
-}
+// while (currNode) {
+//   console.log(currNode);
+//   currNode = currNode.next;
+// }
+
+// console.log(
+//   "nextGreaterElement ==== ",
+//   // nextGreaterElement([4, 1, 2], [1, 3, 4, 2])
+//   nextGreaterElement([2, 4], [  1, 3, 2, 4])
+// );
+
+// console.log(
+//   "dailyTemperatures ==== ",
+//   dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
+// );
+
+console.log(
+  "largestRectangleArea ==== ",
+  largestRectangleArea([2, 1, 5, 6, 2, 3])
+);
