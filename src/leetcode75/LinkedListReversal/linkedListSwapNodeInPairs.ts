@@ -1,4 +1,4 @@
-import { ListNode } from "../utils/listNode";
+import { ListNode } from "../../utils/listNode";
 
 export function swapPairs(head: ListNode | null): ListNode | null {
   if (!head || !head.next) return head;

@@ -1,4 +1,4 @@
-import { ListNode } from "../utils/listNode";
+import { ListNode } from "../../utils/listNode";
 
 export function reverseLinked(head: ListNode | null): ListNode | null {
   let currNode = head;

@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { largestRectangleArea } from "./src/leetcode75/largestRectagleInHistogram";
+import { largestRectangleArea } from "./src/leetcode75/MonotonicStack/largestRectagleInHistogram";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
 
 // const twoSumArr = [3, 2, 3];
