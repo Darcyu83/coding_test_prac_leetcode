@@ -3,6 +3,7 @@
 
 import { largestRectangleArea } from "./src/leetcode75/MonotonicStack/largestRectagleInHistogram";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
+import { MaxPriorityQueue } from "./src/utils/priorityQueue";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -107,3 +108,10 @@ console.log(
   "largestRectangleArea ==== ",
   largestRectangleArea([2, 1, 5, 6, 2, 3])
 );
+
+const heap = new MaxPriorityQueue({
+  priority: (item: { id: number; title: string }) => item.id,
+});
+
+console.log(heap.enqueue({ id: 30, title: "test" }));
+console.log(heap.peek());

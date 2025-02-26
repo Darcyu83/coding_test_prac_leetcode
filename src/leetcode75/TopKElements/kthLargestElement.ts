@@ -1,5 +1,52 @@
-export function findKthLargest(nums: number[], k: number): number {
-  return -1;
+import { MaxPriorityQueue, MinPriorityQueue } from "../../utils/priorityQueue";
+
+class TopKElements {
+  // using Sorting
+  KLargestElementSortingApproach(nums: number[], k: number): number {
+    nums.sort((a, b) => a - b);
+    return nums[nums.length - k];
+  }
+
+  // using MaxHeap
+  KLargestElementMaxHeapApproach(nums: number[], k: number): number {
+    const maxHeap = new MaxPriorityQueue();
+
+    for (const num of nums) {
+      maxHeap.enqueue(num);
+    }
+
+    let result: number = 0;
+
+    for (let i = 0; i < k; i++) {
+      const max = maxHeap.dequeue();
+      result = max || 0;
+    }
+    return result;
+  }
+
+  KLargestElementMinHeapApproach(nums: number[], k: number): number {
+    const minHeap = new MinPriorityQueue();
+
+    for (let i = 0; i < k; i++) {
+      minHeap.enqueue(nums[i]);
+    }
+
+    for (let i = k; i < nums.length; i++) {
+      minHeap.enqueue(nums[i]);
+      if (minHeap.size() > k) {
+        minHeap.dequeue();
+      }
+    }
+
+    let result = 0;
+
+    for (let i = 0; i < k; i++) {
+      const min = minHeap.dequeue();
+      result = min || 0;
+    }
+
+    return result;
+  }
 }
 
 export function findKthLargest1(nums: number[], k: number): number {
@@ -103,4 +150,89 @@ export function findKthLargest3(nums: number[], k: number): number {
   }
 
   return quickSelect(0, nums.length - 1);
+}
+
+export function findKthLargest4WithClass(nums: number[], k: number): number {
+  let heap = new MaxHeap(nums);
+  let result: number = 0;
+  for (let i = 0; i < k; i++) {
+    result = heap.pop();
+  }
+
+  return result;
+}
+class MaxHeap {
+  heap: number[] = [];
+
+  constructor(nums: number[]) {
+    this.heap = [];
+    this.buildHeap(nums);
+  }
+
+  leftChildIndx(parent: number) {
+    return parent * 2 + 1;
+  }
+  rightChildIndex(parent: number) {
+    return parent * 2 + 2;
+  }
+
+  swap(a: number, b: number) {
+    [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+  }
+
+  findLargestIndex(parent: number) {
+    const left = this.leftChildIndx(parent);
+    const right = this.rightChildIndex(parent);
+
+    let largest = parent;
+    if (left < this.heap.length && this.heap[left] > this.heap[largest]) {
+      largest = left;
+    }
+
+    if (right < this.heap.length && this.heap[right] > this.heap[largest]) {
+      largest = right;
+    }
+
+    return largest;
+  }
+
+  filterDown() {
+    let index = 0;
+    while (index < this.heap.length) {
+      let largest = this.findLargestIndex(index);
+      if (largest !== index) {
+        this.swap(index, largest);
+        index = largest;
+      } else {
+        break;
+      }
+    }
+  }
+
+  pop() {
+    let result = this.heap[0];
+    this.heap[0] = this.heap.pop()!;
+    this.filterDown();
+
+    return result;
+  }
+
+  buildHeap(arr: number[]) {
+    this.heap.push(...arr);
+
+    const n = arr.length;
+
+    const heapify = (index: number) => {
+      let largest = this.findLargestIndex(index);
+
+      if (largest !== index) {
+        this.swap(largest, index);
+        heapify(largest);
+      }
+    };
+
+    for (let i = Math.floor(n / 2); i >= 0; i--) {
+      heapify(i);
+    }
+  }
 }
