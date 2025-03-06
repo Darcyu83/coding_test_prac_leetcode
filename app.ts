@@ -1,9 +1,8 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { largestRectangleArea } from "./src/leetcode75/MonotonicStack/largestRectagleInHistogram";
+import { permute, permute2 } from "./src/leetcode75/Backtracking/permute";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { MaxPriorityQueue } from "./src/utils/priorityQueue";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -104,14 +103,46 @@ console.log("result ==== ", result);
 //   dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
 // );
 
-console.log(
-  "largestRectangleArea ==== ",
-  largestRectangleArea([2, 1, 5, 6, 2, 3])
-);
+// console.log(
+//   "largestRectangleArea ==== ",
+//   largestRectangleArea([2, 1, 5, 6, 2, 3])
+// );
 
-const heap = new MaxPriorityQueue({
-  priority: (item: { id: number; title: string }) => item.id,
-});
+// const heap = new MaxPriorityQueue({
+//   priority: (item: { id: number; title: string }) => item.id,
+// });
 
-console.log(heap.enqueue({ id: 30, title: "test" }));
-console.log(heap.peek());
+// console.log(heap.enqueue({ id: 30, title: "test" }));
+// console.log(heap.peek());
+
+// console.log(
+//   numIslands([
+//     ["1", "1", "0", "0", "0"],
+//     ["1", "1", "0", "0", "0"],
+//     ["0", "0", "1", "0", "0"],
+//     ["0", "0", "0", "1", "1"],
+//   ])
+// );
+
+// surroundedRegions([
+//   ["X", "X", "X", "X"],
+//   ["X", "O", "O", "X"],
+//   ["X", "X", "O", "X"],
+//   ["X", "O", "X", "X"],
+// ]);
+
+// surroundedRegions([
+//   ["X", "O", "X", "X"],
+//   ["O", "O", "X", "X"],
+//   ["X", "O", "O", "X"],
+//   ["X", "X", "X", "X"],
+// ]);
+// surroundedRegions([
+//   ["O", "O", "O", "O", "O", "O"],
+//   ["X", "O", "O", "O", "O", "O"],
+//   ["X", "O", "O", "O", "O", "O"],
+// ]);
+
+permute([1, 2, 3]);
+
+permute2([1, 2, 3]);

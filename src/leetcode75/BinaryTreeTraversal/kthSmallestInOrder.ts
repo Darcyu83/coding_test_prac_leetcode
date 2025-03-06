@@ -1,11 +1,11 @@
 import { TreeNode } from "../../utils/treeNode";
 
-The best approach is inorder traversal because:
-BST Inorder Traversal (Left → Node → Right) produces sorted values in ascending order.
-Stop early when we find the kth element (O(k) complexity instead of O(n) in worst case).
-Best Solution: Iterative Inorder Traversal (Using Stack)
-Time Complexity: O(k)
-Space Complexity: O(h) (h = tree height, worst case O(n) for skewed trees, O(log n) for balanced trees)
+// The best approach is inorder traversal because:
+// BST Inorder Traversal (Left → Node → Right) produces sorted values in ascending order.
+// Stop early when we find the kth element (O(k) complexity instead of O(n) in worst case).
+// Best Solution: Iterative Inorder Traversal (Using Stack)
+// Time Complexity: O(k)
+// Space Complexity: O(h) (h = tree height, worst case O(n) for skewed trees, O(log n) for balanced trees)
 
 // Binary Search Tree (BST)
 // Recursive

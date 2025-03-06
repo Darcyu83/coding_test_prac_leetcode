@@ -86,3 +86,4 @@ function binaryTreePathsRecursive(root: TreeNode | null): string[] {
 
   return result;
 }
+
