@@ -1,7 +1,7 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { permute, permute2 } from "./src/leetcode75/Backtracking/permute";
+import { permute } from "./src/leetcode75/Backtracking/permute";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
 
 // const twoSumArr = [3, 2, 3];
@@ -145,4 +145,4 @@ console.log("result ==== ", result);
 
 permute([1, 2, 3]);
 
-permute2([1, 2, 3]);
+// permute2([1, 2, 3]);

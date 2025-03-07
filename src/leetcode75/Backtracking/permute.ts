@@ -1,9 +1,35 @@
 export function permute(nums: number[]): number[][] {
   const permutations: number[][] = [];
+  const nameList = [
+    "Ian",
+    "Jessica",
+    "Kevin",
+    "Lily",
+    "Michael",
+    "Nora",
+    "Oscar",
+    "Penelope",
+    "Quincy",
+    "Rebecca",
+    "Steve",
+    "Tracy",
+    "Ulysses",
+    "Violet",
+    "Walter",
+    "Xena",
+  ];
+  async function backtrackDFS(fixedCharIdx: number, fromNm: string = "begin") {
+    const name = nameList.pop()!;
+    console.log(
+      "    ".repeat(fixedCharIdx) + "depth ==== ",
+      fixedCharIdx,
+      "::",
+      `fromFnName: ${fromNm}`,
+      "->",
+      `thisFnName: ${name}`,
+      fixedCharIdx === nums.length ? "return" : ""
+    );
 
-  const chunks: number[] = [];
-
-  function backtrackDFS(fixedCharIdx: number) {
     if (fixedCharIdx === nums.length) {
       permutations.push([...nums]);
       return;
@@ -12,12 +38,27 @@ export function permute(nums: number[]): number[][] {
     for (let i = fixedCharIdx; i < nums.length; i++) {
       // Swap current element with the element at 'start'
       [nums[fixedCharIdx], nums[i]] = [nums[i], nums[fixedCharIdx]];
+      console.log(
+        "    ".repeat(fixedCharIdx) + "Swapped:",
+        name,
+        fixedCharIdx,
+        "↔",
+        i,
+        "=>",
+        nums
+      );
 
-      console.log("nums ==== ", fixedCharIdx, "i ==== ", i, nums);
-      backtrackDFS(fixedCharIdx + 1);
-
-      // Backtrack by swapping the elements back
+      backtrackDFS(fixedCharIdx + 1, name);
       [nums[fixedCharIdx], nums[i]] = [nums[i], nums[fixedCharIdx]];
+      console.log(
+        "    ".repeat(fixedCharIdx) + "Backtracked:",
+        name,
+        fixedCharIdx,
+        "↔",
+        i,
+        "=>",
+        nums
+      );
     }
   }
   backtrackDFS(0);
