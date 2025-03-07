@@ -1,7 +1,11 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import { permute } from "./src/leetcode75/Backtracking/permute";
+import {
+  climbStairsMemoPaths,
+  climbStairsSpaceOptimizedPaths,
+  climbStairsTabPaths,
+} from "./src/leetcode75/DynamicProgrammingPatters/climbStairs";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
 
 // const twoSumArr = [3, 2, 3];
@@ -143,6 +147,10 @@ console.log("result ==== ", result);
 //   ["X", "O", "O", "O", "O", "O"],
 // ]);
 
-permute([1, 2, 3]);
+// permute([1, 2, 3]);
 
 // permute2([1, 2, 3]);
+
+console.log(climbStairsMemoPaths(5));
+console.log(climbStairsTabPaths(5));
+console.log(climbStairsSpaceOptimizedPaths(5));
