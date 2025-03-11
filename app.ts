@@ -1,12 +1,8 @@
 // const l1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const l2 = [1, 2, 3, 4, 5];
 
-import {
-  climbStairsMemoPaths,
-  climbStairsSpaceOptimizedPaths,
-  climbStairsTabPaths,
-} from "./src/leetcode75/DynamicProgrammingPatters/climbStairs";
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
+import { findMaxLength } from "./src/myLeetcode15Patterns/1.PrefixSum/contiguousArray";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -151,6 +147,13 @@ console.log("result ==== ", result);
 
 // permute2([1, 2, 3]);
 
-console.log(climbStairsMemoPaths(5));
-console.log(climbStairsTabPaths(5));
-console.log(climbStairsSpaceOptimizedPaths(5));
+// console.log(climbStairsMemo(10));
+// console.log(climbStairsMemoPaths(5));
+// console.log(climbStairsTabPaths(5));
+// console.log(climbStairsSpaceOptimizedPaths(5));
+
+// fibonacci(10);
+
+// console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+
+console.log(findMaxLength([0, 1, 1, 1, 1, 1, 0, 0, 0]));
