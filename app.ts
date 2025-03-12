@@ -2,7 +2,6 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { findMaxLength } from "./src/myLeetcode15Patterns/1.PrefixSum/contiguousArray";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -156,4 +155,7 @@ console.log("result ==== ", result);
 
 // console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
 
-console.log(findMaxLength([0, 1, 1, 1, 1, 1, 0, 0, 0]));
+// console.log(findMaxLength([0, 1, 1, 1, 1, 1, 0, 0, 0]));
+
+// console.log(subarraySum1([10, 2, -2, -20, 10], -10));
+// console.log(subarraySum2([10, 2, -2, -20, 10], -10));
