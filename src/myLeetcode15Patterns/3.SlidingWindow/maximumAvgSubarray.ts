@@ -13,3 +13,5 @@ function findMaxAverage(nums: number[], k: number): number {
 
   return Math.round((maxSum / k) * 100000) / 100000;
 }
+
+
