@@ -1,3 +1,5 @@
+// The next greater element of some element x in an array
+// is the first greater element that is to the right of x in the same array.
 export function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
   const nextGreater = new Map<number, number>();
 
@@ -14,3 +16,5 @@ export function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
 
   return nums1.map((num) => nextGreater.get(num)!);
 }
+
+
