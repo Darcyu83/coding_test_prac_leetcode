@@ -133,3 +133,152 @@ function kSmallestPairs(
 
   return result;
 }
+
+// (a,b) => a[0] - b[0]
+type CompareFn<T> = (a: T, b: T) => number;
+
+class BinaryMinHeap<T> {
+  heap: T[];
+
+  compare: CompareFn<T>;
+
+  constructor(compareFn: CompareFn<T>) {
+    this.heap = [];
+    this.compare = compareFn;
+  }
+
+  pop(): T | undefined {
+    if (this.heap.length < 2) {
+      return this.heap.pop();
+    }
+
+    const samllest = this.heap[0];
+
+    this.heap[0] = this.heap.pop()!;
+
+    this.sinkDown(this.heap, this.compare, 0);
+
+    return samllest;
+  }
+
+  push(value: T): number {
+    const length = this.heap.push(value);
+    this.bubbleUp(this.heap, this.compare, length - 1);
+    return length;
+  }
+
+  bubbleUp<T>(arr: Array<T>, compareFn: CompareFn<T>, index: number) {
+    const value = arr[index];
+
+    while (index > 0) {
+      // Math.floor((index - 1) / 2);
+      const parentIndex = (index - 1) >> 1;
+      if (compareFn(arr[parentIndex], value) <= 0) {
+        break;
+      }
+
+      arr[index] = arr[parentIndex];
+      index = parentIndex;
+    }
+
+    arr[index] = value;
+  }
+
+  // sinkDown<T>(arr: Array<T>, compareFn: CompareFn<T>, parentIdx: number) {
+  //   const N = arr.length;
+
+  //   // Find the indices of the two children (left and right) of the parent
+  //   const leftChildIdx = 2 * parentIdx + 1;
+  //   const rightChildIdx = 2 * parentIdx + 2;
+
+  //   // Find the index of the smallest (or largest in case of a max-heap) child
+  //   let smallestChildIdx = parentIdx;
+
+  //   // Check if the left child exists and is smaller than the current element
+  //   if (
+  //     leftChildIdx < N &&
+  //     compareFn(arr[leftChildIdx], arr[smallestChildIdx]) < 0
+  //   ) {
+  //     smallestChildIdx = leftChildIdx;
+  //   }
+
+  //   // Check if the right child exists and is smaller than the current element
+  //   if (
+  //     rightChildIdx < N &&
+  //     compareFn(arr[rightChildIdx], arr[smallestChildIdx]) < 0
+  //   ) {
+  //     smallestChildIdx = rightChildIdx;
+  //   }
+
+  //   // If the smallest child is different from the parent, swap and recursively heapify
+  //   if (smallestChildIdx !== parentIdx) {
+  //     [arr[parentIdx], arr[smallestChildIdx]] = [
+  //       arr[smallestChildIdx],
+  //       arr[parentIdx],
+  //     ];
+
+  //     // Recursively heapify the affected subtree
+  //     this.sinkDown(arr, compareFn, smallestChildIdx);
+  //   }
+  // }
+
+  sinkDown<T>(arr: Array<T>, compareFn: CompareFn<T>, index: number) {
+    const value = arr[index];
+    const N = arr.length;
+    const mid = Math.floor(arr.length / 2) - 1;
+    // const mid = (N - 1) / 2;
+
+    while (index <= mid) {
+      let childIndex = (index << 1) + 1;
+
+      // +(true) = 1 , +(false) = 0
+      childIndex += +(
+        childIndex + 1 < N &&
+        compareFn(arr[childIndex + 1], arr[childIndex]) <= 0
+      );
+
+      if (compareFn(value, arr[childIndex]) <= 0) {
+        break;
+      }
+
+      arr[index] = arr[childIndex];
+      index = childIndex;
+    }
+    arr[index] = value;
+  }
+}
+
+type HeapItem = [sum: number, nums1Value: number, nums2Index: number];
+export function kSmallestPairsRecap(
+  nums1: number[],
+  nums2: number[],
+  k: number
+): number[][] {
+  const result: number[][] = [];
+  if (nums1.length === 0 || nums2.length === 0 || k === 0) return result;
+
+  const minHeap = new BinaryMinHeap<HeapItem>((a, b) => a[0] - b[0]);
+
+  const N = Math.min(nums1.length, k);
+  const M = Math.min(nums2.length, k);
+
+  for (let i = 0; i < N; i++) {
+    minHeap.push([nums1[i] + nums2[0], nums1[i], 0]);
+  }
+
+  while (k-- > 0 && minHeap.heap.length > 0) {
+    const [sum, nums1Value, nums2Index] = minHeap.pop()!;
+
+    result.push([nums1Value, sum - nums1Value]);
+
+    if (nums2Index + 1 < M) {
+      minHeap.push([
+        nums1Value + nums2[nums2Index + 1],
+        nums1Value,
+        nums2Index + 1,
+      ]);
+    }
+  }
+
+  return result;
+}
