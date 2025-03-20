@@ -2,8 +2,9 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
+import { binaryTreePathsBFS } from "./src/myLeetcode15Patterns/10.BinaryTreeTraversal/binaryTreePathInPreOrder";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
-import { search1 } from "./src/myLeetcode15Patterns/9.ModifiedBinarySearch/searchInRotatedSortedArray";
+import { TreeNode } from "./src/utils/treeNode";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -180,4 +181,16 @@ eraseOverlapIntervals([
 ]);
 
 // console.log(search1([4, 5, 6, 7, 0, 1, 2], 0));
-console.log(search1([5, 1, 3], 3));
+// console.log(search1([5, 1, 3], 3));
+
+const root = new TreeNode(
+  -10,
+  new TreeNode(9),
+  new TreeNode(
+    20,
+    new TreeNode(15),
+    // null
+    new TreeNode(7)
+  )
+);
+console.log(binaryTreePathsBFS(root));

@@ -11,7 +11,7 @@ import { TreeNode } from "../../utils/treeNode";
 
 // Breadth-First Search (BFS).
 // BFS (Queue) is better for balanced trees since it explores level by level.
-function binaryTreePathsBFS(root: TreeNode | null): string[] {
+export function binaryTreePathsBFS(root: TreeNode | null): string[] {
   if (!root) return [];
 
   const result: string[] = [];
@@ -57,6 +57,7 @@ function binaryTreePathsDFS(root: TreeNode | null): string[] {
     if (node.left) {
       stack.push({ node: node.left, path: `${path}->${node.left.val}` });
     }
+    
     if (node.right) {
       stack.push({ node: node.right, path: `${path}->${node.right.val}` });
     }
@@ -65,25 +66,24 @@ function binaryTreePathsDFS(root: TreeNode | null): string[] {
   return result;
 }
 
-// DFS
+// DFS : RECURSIVE
 function binaryTreePathsRecursive(root: TreeNode | null): string[] {
   const path: number[] = [];
   const result: string[] = [];
 
-  function traverse(node: TreeNode | null) {
+  function dfs(node: TreeNode | null) {
     if (!node) return;
     path.push(node.val);
     if (!node.left && !node.right) {
       result.push(path.join("->"));
     } else {
-      traverse(node.left);
-      traverse(node.right);
+      dfs(node.left);
+      dfs(node.right);
     }
     path.pop();
   }
 
-  traverse(root);
+  dfs(root);
 
   return result;
 }
-
