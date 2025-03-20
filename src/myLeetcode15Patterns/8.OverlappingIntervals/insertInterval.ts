@@ -5,13 +5,16 @@ function insert(intervals: number[][], newInterval: number[]): number[][] {
     const interval = intervals[i];
 
     if (interval[0] > newInterval[1]) {
+      // CASE 1: No overlap & `newInterval` should come before `interval`
       result.push(newInterval);
-      intervals.slice(i).forEach((interval) => result.push(interval));
+      result.push(...intervals.slice(i));
 
       return result;
     } else if (newInterval[0] > intervals[i][1]) {
+      // CASE 2: No overlap & `interval` comes before `newInterval`
       result.push(interval);
     } else {
+      // CASE 3: Overlapping intervals → Merge `interval` into `newInterval`
       newInterval = [
         Math.min(newInterval[0], intervals[i][0]),
         Math.max(newInterval[1], intervals[i][1]),
@@ -20,6 +23,28 @@ function insert(intervals: number[][], newInterval: number[]): number[][] {
   }
 
   result.push(newInterval);
+
+  // let i = 0;
+
+  // // CASE 1: The current interval does NOT overlap with newInterval and comes BEFORE it.
+  // while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+  //   result.push(intervals[i]);
+  //   i++;
+  // }
+
+  // // CASE 2: The current interval OVERLAPS with newInterval.
+  // while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+  //   newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+  //   newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+  //   i++;
+  // }
+
+  // result.push(newInterval);
+
+  // // CASE 3: The remaining intervals do NOT overlap and come AFTER newInterval.
+  // while (i < intervals.length) {
+  //   result.push(intervals[i]);
+  // }
 
   return result;
 }

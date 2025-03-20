@@ -2,6 +2,7 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
+import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -159,3 +160,20 @@ console.log("result ==== ", result);
 
 // console.log(subarraySum1([10, 2, -2, -20, 10], -10));
 // console.log(subarraySum2([10, 2, -2, -20, 10], -10));
+
+// largestRectangleArea2Passed([1, 3, 5, 6, 4, 7, 2, 9]);
+
+// kthLargestEl();
+
+// topKFrequentHeap([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5], 2);
+// topKFrequentHeap([1, 1, 1, 2, 2, 3], 2);
+
+// kSmallestPairsRecap([1, 7, 11], [2, 4, 6], 3);
+// kSmallestPairsRecap([1, 2, 4, 5, 6], [3, 5, 7, 9], 3);
+
+eraseOverlapIntervals([
+  [1, 100],
+  [11, 22],
+  [1, 11],
+  [2, 12],
+]);
