@@ -3,6 +3,7 @@
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
+import { search1 } from "./src/myLeetcode15Patterns/9.ModifiedBinarySearch/searchInRotatedSortedArray";
 
 // const twoSumArr = [3, 2, 3];
 // const result = twoSum(twoSumArr, 6);
@@ -177,3 +178,6 @@ eraseOverlapIntervals([
   [1, 11],
   [2, 12],
 ]);
+
+// console.log(search1([4, 5, 6, 7, 0, 1, 2], 0));
+console.log(search1([5, 1, 3], 3));
