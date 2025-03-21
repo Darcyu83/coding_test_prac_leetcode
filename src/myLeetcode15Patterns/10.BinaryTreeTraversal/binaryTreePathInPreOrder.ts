@@ -57,7 +57,7 @@ function binaryTreePathsDFS(root: TreeNode | null): string[] {
     if (node.left) {
       stack.push({ node: node.left, path: `${path}->${node.left.val}` });
     }
-    
+
     if (node.right) {
       stack.push({ node: node.right, path: `${path}->${node.right.val}` });
     }
@@ -86,4 +86,58 @@ function binaryTreePathsRecursive(root: TreeNode | null): string[] {
   dfs(root);
 
   return result;
+}
+
+// ===================================
+const path: number[] = [];
+const result: string[] = [];
+
+// RECURSIVE
+function dfs(node: TreeNode | null) {
+  if (!node) return;
+
+  path.push(node.val);
+
+  if (!node.left && !node.right) {
+    result.push(path.join("->"));
+  } else {
+    dfs(node.left);
+    dfs(node.right);
+  }
+  path.pop();
+}
+
+// DFS : STACK
+const stack: { node: TreeNode; path: string }[] = [];
+
+while (stack.length) {
+  const { node, path } = stack.pop()!;
+
+  if (!node.left && !node.right) result.push(path);
+
+  if (node.left) {
+    stack.push({ node: node.left, path: `${path}->${node.val}` });
+  }
+
+  if (node.right) {
+    stack.push({ node: node.right, path: `${path}->${node.val}` });
+  }
+}
+
+// BFS : QUEUE
+const queue: { node: TreeNode; path: string }[] = [];
+while (queue.length) {
+  const { node, path } = queue.shift()!;
+
+  if (!node.left && !node.right) {
+    result.push(path);
+  }
+
+  if (node.left) {
+    queue.push({ node: node.left, path: `${path}->${node.val}` });
+  }
+
+  if (node.right) {
+    queue.push({ node: node.right, path: `${path}->${node.val}` });
+  }
 }

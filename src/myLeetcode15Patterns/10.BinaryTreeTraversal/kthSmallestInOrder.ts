@@ -10,7 +10,7 @@ import { TreeNode } from "../../utils/treeNode";
 
 // Binary Search Tree (BST)
 // Recursive
-function kthSmallest(root: TreeNode | null, k: number): number {
+export function kthSmallest(root: TreeNode | null, k: number): number {
   let ans: number | null = null;
 
   const dfs = (node: TreeNode | null) => {
