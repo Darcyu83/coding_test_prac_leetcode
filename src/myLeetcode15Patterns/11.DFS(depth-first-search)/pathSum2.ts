@@ -22,7 +22,7 @@ function pathSum1(root: TreeNode | null, targetSum: number): number[][] {
   return result;
 }
 
-// sum + node.val
+// sum 0 + node.val
 function pathSum(root: TreeNode | null, targetSum: number): number[][] {
   const result: number[][] = [];
 
@@ -31,14 +31,12 @@ function pathSum(root: TreeNode | null, targetSum: number): number[][] {
     pathNums.push(node.val);
     sum += node.val;
 
-    if (!node.left && !node.right) {
-      if (sum === targetSum) result.push([...pathNums]);
+    if (!node.left && !node.right && sum === targetSum) {
+      result.push([...pathNums]);
     }
 
-    if (sum <= targetSum) {
-      dfs(node.left, pathNums, sum);
-      dfs(node.right, pathNums, sum);
-    }
+    dfs(node.left, pathNums, sum);
+    dfs(node.right, pathNums, sum);
 
     pathNums.pop();
   }

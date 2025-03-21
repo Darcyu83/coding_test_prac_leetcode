@@ -4,17 +4,16 @@
 // Out-degree는 그래프에서 정점에 나가는 간선의 수
 function findOrderBFS(numCourses: number, prerequisites: number[][]): number[] {
   // Step 1: Build the graph and calculate in-degrees
-  const graph: number[][] = Array.from({ length: numCourses }, () => []);
+  const prereqs: number[][] = Array.from({ length: numCourses }, () => []);
   const inDegree: number[] = new Array(numCourses).fill(0);
   // Build the graph and calculate in-degree for each course
 
   for (const [course, preReq] of prerequisites) {
-    graph[preReq].push(course); // Add course to the list of the prerequisite's neighbors
+    prereqs[preReq].push(course); // Add course to the list of the prerequisite's neighbors
     inDegree[course]++; // Increment in-degree for the course
   }
 
   // Step 2: Initialize the queue with courses that have no prerequisites (in-degree 0)
-
   const queue: number[] = [];
 
   for (let courseIdx = 0; courseIdx < numCourses; courseIdx++) {
@@ -26,19 +25,20 @@ function findOrderBFS(numCourses: number, prerequisites: number[][]): number[] {
   // Step 3: Perform topological sorting using BFS
   const order: number[] = [];
   while (queue.length > 0) {
-    const course = queue.shift()!;
-    order.push(course);
+    const courseIdx = queue.shift()!;
+    order.push(courseIdx);
 
     // Process all neighbors of the current course
 
-    for (const neighbor of graph[course]) {
-      inDegree[neighbor]--; // Decrease the in-degree of the neighbor
+    for (const course of prereqs[courseIdx]) {
+      inDegree[course]--; // Decrease the in-degree of the neighbor
       // if (inDegree[neighbor] === 0) {
       //   queue.push(neighbor); // If in-degree becomes 0, add it to the queue
       // }
 
-      const isReadyToTake = inDegree[neighbor] === 0;
-      if (isReadyToTake) queue.push(neighbor);
+      const isReadyToTake = inDegree[course] === 0;
+
+      if (isReadyToTake) queue.push(course);
     }
   }
 
@@ -119,4 +119,39 @@ function findOrder1(numCourses: number, prerequisites: number[][]): number[] {
   }
 
   return finish === numCourses ? order : [];
+}
+
+// kahn's
+function findOrder(numCourses: number, prerequisites: number[][]): number[] {
+  // build graph
+  const prereqs: number[][] = Array.from({ length: numCourses }, () => []);
+  const inDegree: number[] = new Array(numCourses).fill(0);
+
+  for (const [course, preReq] of prerequisites) {
+    prereqs[preReq].push(course);
+    inDegree[course]++;
+  }
+
+  // Initialize the queue with courses that have no prerequisites
+  const queue: number[] = [];
+
+  for (let courseIdx = 0; courseIdx < numCourses; courseIdx++) {
+    const hasNoPrerequisites = inDegree[courseIdx] === 0;
+    if (hasNoPrerequisites) queue.push(courseIdx);
+  }
+
+  // perform topological sorting using BFS
+
+  const order: number[] = [];
+  while (queue.length) {
+    const courseIdx = queue.shift()!;
+    order.push(courseIdx);
+
+    for (const course of prereqs[courseIdx]) {
+      inDegree[course]--;
+      const isReadyToTake = inDegree[course] === 0;
+      if (isReadyToTake) queue.push(course);
+    }
+  }
+  return order.length === numCourses ? order : [];
 }
