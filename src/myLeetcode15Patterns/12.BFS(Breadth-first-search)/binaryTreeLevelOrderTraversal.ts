@@ -69,3 +69,24 @@ function levelOrderDFSIterative(root: TreeNode | null): number[][] {
 
   return result;
 }
+
+function levelOrder(root: TreeNode | null): number[][] {
+  const result = [];
+  const queue = [root];
+  while (queue.length) {
+    const thisLevelNodesCnt = queue.length;
+    const vals = [];
+    for (let i = 0; i < thisLevelNodesCnt; i++) {
+      const node = queue.shift()!;
+
+      vals.push(node.val);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    result.push(vals);
+  }
+
+  return result;
+}

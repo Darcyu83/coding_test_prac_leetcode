@@ -155,3 +155,11 @@ function findOrder(numCourses: number, prerequisites: number[][]): number[] {
   }
   return order.length === numCourses ? order : [];
 }
+
+// kahn's
+function findOrderRecap(
+  numCourses: number,
+  prerequisites: number[][]
+): number[] {
+  return [];
+}
