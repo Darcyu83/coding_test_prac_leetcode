@@ -18,51 +18,20 @@ export function permute(nums: number[]): number[][] {
     "Walter",
     "Xena",
   ];
-  async function backtrackDFS(fixedCharIdx: number, fromNm: string = "begin") {
+  async function backtrackDFS(start: number, fromNm: string = "begin") {
     const name = nameList.pop()!;
-    console.log(
-      "    ".repeat(fixedCharIdx) + "depth ==== ",
-      fixedCharIdx,
-      "::",
-      `fromFnName: ${fromNm}`,
-      "->",
-      `thisFnName: ${name}`,
-      fixedCharIdx === nums.length ? "return" : ""
-    );
-
-    if (fixedCharIdx === nums.length) {
+    if (start === nums.length) {
       permutations.push([...nums]);
       return;
     }
-
-    for (let i = fixedCharIdx; i < nums.length; i++) {
+    for (let i = start; i < nums.length; i++) {
       // Swap current element with the element at 'start'
-      [nums[fixedCharIdx], nums[i]] = [nums[i], nums[fixedCharIdx]];
-      console.log(
-        "    ".repeat(fixedCharIdx) + "Swapped:",
-        name,
-        fixedCharIdx,
-        "↔",
-        i,
-        "=>",
-        nums
-      );
-
-      backtrackDFS(fixedCharIdx + 1, name);
-      [nums[fixedCharIdx], nums[i]] = [nums[i], nums[fixedCharIdx]];
-      console.log(
-        "    ".repeat(fixedCharIdx) + "Backtracked:",
-        name,
-        fixedCharIdx,
-        "↔",
-        i,
-        "=>",
-        nums
-      );
+      [nums[start], nums[i]] = [nums[i], nums[start]];
+      backtrackDFS(start + 1, name);
+      [nums[start], nums[i]] = [nums[i], nums[start]];
     }
   }
   backtrackDFS(0);
-
   return permutations;
 }
 
@@ -72,7 +41,6 @@ export function permute2(nums: number[]): number[][] {
 
   function backtrack() {
     // Base case: If partialPermutation is complete, push a copy of it
-    console.log("when call ---  ----- ", [...partialPermutation]);
     if (partialPermutation.length === nums.length) {
       // Caution! : permutations.push(partialPermutation); // Create a copy of the current permutation
       permutations.push([...partialPermutation]); // Create a copy of the current permutation
@@ -90,4 +58,29 @@ export function permute2(nums: number[]): number[][] {
 
   backtrack(); // Start the backtracking process
   return permutations;
+}
+
+// space O(n)
+export function permuteRecap(nums: number[]): number[][] {
+  // time n! * n^2
+  // space n! * n
+
+  const result: number[][] = [];
+
+  function backtrack(path: number[], remaining: number[]): void {
+    if (remaining.length === 0) {
+      result.push([...path]);
+      return;
+    }
+
+    for (let i = 0; i < remaining.length; i++) {
+      const arg1 = [...path, remaining[i]];
+      const arg2 = [...remaining.slice(0, i), ...remaining.slice(i + 1)];
+      backtrack(arg1, arg2);
+    }
+  }
+
+  backtrack([], nums);
+
+  return result;
 }

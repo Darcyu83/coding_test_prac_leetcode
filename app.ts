@@ -2,7 +2,7 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { kthSmallest } from "./src/myLeetcode15Patterns/10.BinaryTreeTraversal/kthSmallestInOrder";
+import { permute2 } from "./src/myLeetcode15Patterns/14.Backtracking/permute";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 import { TreeNode } from "./src/utils/treeNode";
 
@@ -147,7 +147,9 @@ console.log("result ==== ", result);
 
 // permute([1, 2, 3]);
 
-// permute2([1, 2, 3]);
+permute2([1, 2, 3]);
+
+// permuteRecap([1, 2, 3]);
 
 // console.log(climbStairsMemo(10));
 // console.log(climbStairsMemoPaths(5));
@@ -201,4 +203,4 @@ const root = new TreeNode(
   new TreeNode(4)
 );
 
-kthSmallest(root, 2);
+// kthSmallest(root, 2);

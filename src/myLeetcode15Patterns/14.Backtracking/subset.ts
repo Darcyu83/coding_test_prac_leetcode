@@ -12,7 +12,6 @@ function subsets(nums: number[]): number[][] {
 
       currentSubset.pop();
     }
-    
   }
 
   backtrack(0, []);
