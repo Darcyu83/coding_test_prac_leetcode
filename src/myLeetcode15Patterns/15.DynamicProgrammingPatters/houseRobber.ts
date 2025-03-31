@@ -1,13 +1,23 @@
 // https://www.youtube.com/watch?v=73r3KWiEvyk
 function rob(nums: number[]): number {
+  // let rob1 = 0,
+  //   rob2 = 0;
+
+  // // [rob1, rob2, n, n+1 ,...]
+  // for (const money of nums) {
+  //   let newMaxRob = Math.max(money + rob1, rob2);
+  //   rob1 = rob2;
+  //   rob2 = newMaxRob;
+  // }
+
   let rob1 = 0,
     rob2 = 0;
 
-  // [rob1, rob2, n, n+1 ,...]
+  // [rob1Odd, rob2Even, n, n+1 ,...]
   for (const money of nums) {
-    let newMaxRob = Math.max(money + rob1, rob2);
-    rob1 = rob2;
-    rob2 = newMaxRob;
+    let prevMax = rob2;
+    rob2 = Math.max(money + rob1, rob2);
+    rob1 = prevMax;
   }
 
   return rob2;
@@ -15,7 +25,6 @@ function rob(nums: number[]): number {
 
 // Approach: Dynamic Programming (Bottom-Up)
 // Space Optimization
-
 function robspace(nums: number[]): number {
   if (nums.length === 0) return 0;
   if (nums.length === 1) return nums[0];
