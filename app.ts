@@ -2,7 +2,7 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { permute2 } from "./src/myLeetcode15Patterns/14.Backtracking/permute";
+import { coinChangeBFS } from "./src/myLeetcode15Patterns/15.DynamicProgrammingPatters/coinChange";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 import { TreeNode } from "./src/utils/treeNode";
 
@@ -147,7 +147,7 @@ console.log("result ==== ", result);
 
 // permute([1, 2, 3]);
 
-permute2([1, 2, 3]);
+// permute2([1, 2, 3]);
 
 // permuteRecap([1, 2, 3]);
 
@@ -204,3 +204,6 @@ const root = new TreeNode(
 );
 
 // kthSmallest(root, 2);
+
+// coinChangeDP([1, 2, 5], 11);
+console.log("coins needed ==== ", coinChangeBFS([1, 2, 5], 11));
