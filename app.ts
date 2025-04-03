@@ -2,7 +2,7 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { coinChangeBFS } from "./src/myLeetcode15Patterns/15.DynamicProgrammingPatters/coinChange";
+import { lengthOfLIS } from "./src/myLeetcode15Patterns/15.DynamicProgrammingPatters/longestIncreasingSubsequence";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 import { TreeNode } from "./src/utils/treeNode";
 
@@ -206,4 +206,10 @@ const root = new TreeNode(
 // kthSmallest(root, 2);
 
 // coinChangeDP([1, 2, 5], 11);
-console.log("coins needed ==== ", coinChangeBFS([1, 2, 5], 11));
+// console.log("coins needed ==== ", coinChangeBFS([1, 2, 5], 11));
+// console.log(
+//   "longestCommonSubsequence ==== ",
+//   longestCommonSubsequence("abcde", "ace")
+// );
+
+console.log("lengthOfLIS ==== ", lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
