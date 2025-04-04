@@ -2,7 +2,7 @@
 // const l2 = [1, 2, 3, 4, 5];
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
-import { lengthOfLIS } from "./src/myLeetcode15Patterns/15.DynamicProgrammingPatters/longestIncreasingSubsequence";
+import { checkSubarraySum } from "./src/myLeetcode15Patterns/1.PrefixSum/continuousSubArraySum";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 import { TreeNode } from "./src/utils/treeNode";
 
@@ -212,4 +212,8 @@ const root = new TreeNode(
 //   longestCommonSubsequence("abcde", "ace")
 // );
 
-console.log("lengthOfLIS ==== ", lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
+// console.log("lengthOfLIS ==== ", lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
+console.log(
+  "checkSubarraySum ==== ",
+  checkSubarraySum([5, 2, 3, 1, 6, 4, 2, 7, 1, 9, 8], 5)
+);
