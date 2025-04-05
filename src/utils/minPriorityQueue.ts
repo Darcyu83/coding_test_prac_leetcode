@@ -1,117 +1,98 @@
 /**
- * Heap Property
- * 1. In a heap the parent is always greater than or equal to the children for max-heap
- * 2. In a heap the parent is always less than or equal to the children for min-heap
- * 3. A binary heap can be implemented using an array where:
- *  3-1. The left child of a node at index i is at index 2 * i + 1.
- *  3-2. The right child of a node at index i is at index 2 * i + 2.
- *  3-3. The parent of a node at index i is at index Math.floor((i - 1) / 2).
- * 4. The root element will be at index 0
+ * MinPriorityQueue : The smallest element is always at the top(root)
  */
+// Helper function to maintain the min-heap property
 
-/**
- * A heap is an efficient tree-based data structure that supports operations like insertion,
- * removal, and finding the minimum or maximum element in logarithmic time.
- * It is widely used in algorithms like Dijkstra's shortest path algorithm and Heap Sort.
- * Heaps are essential in applications that require quick access to the largest or smallest elements.
- */
-
-/**
- * MaxPriorityQueue : The Largest element is always at the top(root)
- */
-
-export class MaxPriorityQueue<T = number> {
+export class MinPriorityQueue<T> {
   private heap: T[] = [];
-  private priority: (x: T) => number;
 
-  constructor(options?: { priority: (x: T) => number }) {
-    this.priority = options?.priority || ((x: T) => x as unknown as number);
+  // 객체 내의 값 비교 필요할 때
+  private compareFn: (val: T) => number = (val) => 0 as number;
+
+  constructor(options?: { compareFn: (num: T) => number }) {
+    if (options?.compareFn) this.compareFn = options.compareFn;
   }
 
   private swap(i: number, j: number) {
     [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
   }
 
-  // Helper function to maintain the max-heap property
-  private heapifyUp(index: number) {
-    let currentIndex = index;
-    while (currentIndex > 0) {
-      const parentIndex = Math.floor((currentIndex - 1) / 2);
+  // 자식 인덱스로 부모 인덱스 접근 후 값 비교
+  // 부모 값이 자식값보다 작으면 break; minHeap
+  private heapifyUp(childIdx: number) {
+    let currIdx = childIdx;
+    while (currIdx > 0) {
+      const parentIdx = Math.floor((currIdx - 1) / 2);
       if (
-        this.priority(this.heap[currentIndex]) <=
-        this.priority(this.heap[parentIndex])
-      )
+        this.compareFn(this.heap[currIdx]) >=
+        this.compareFn(this.heap[parentIdx])
+      ) {
         break;
-      this.swap(currentIndex, parentIndex);
-      currentIndex = parentIndex;
+      }
+
+      this.swap(currIdx, parentIdx);
+      currIdx = parentIdx;
     }
   }
-
-  // Helper function to maintain the max-heap property during removal
-  private heapifyDown(index: number) {
-    let currentIndex = index;
+  private heapifyDown(parentIdx: number) {
+    let currIdx = parentIdx;
     const length = this.heap.length;
-    while (currentIndex < length) {
-      let leftChild = 2 * currentIndex + 1;
-      let rightChild = 2 * currentIndex + 2;
-      let largest = currentIndex;
+    while (currIdx < length) {
+      let leftChildIdx = 2 * currIdx + 1;
+      let rightChidIdx = 2 * currIdx + 2;
+      let smallestIdx = currIdx; // parent
 
       if (
-        leftChild < length &&
-        this.priority(this.heap[leftChild]) > this.priority(this.heap[largest])
+        leftChildIdx < length &&
+        this.compareFn(this.heap[leftChildIdx]) <
+          this.compareFn(this.heap[smallestIdx])
       ) {
-        largest = leftChild;
+        smallestIdx = leftChildIdx;
       }
 
       if (
-        rightChild < length &&
-        this.priority(this.heap[rightChild]) > this.priority(this.heap[largest])
+        rightChidIdx < length &&
+        this.compareFn(this.heap[rightChidIdx]) <
+          this.compareFn(this.heap[smallestIdx])
       ) {
-        largest = rightChild;
+        smallestIdx = rightChidIdx;
       }
 
-      if (largest === currentIndex) break;
-
-      this.swap(currentIndex, largest);
-      currentIndex = largest;
+      if (smallestIdx === currIdx) break;
+      this.swap(currIdx, smallestIdx);
+      currIdx = smallestIdx;
     }
   }
 
-  // Insert a new element into the priority queue
   enqueue(value: T) {
     this.heap.push(value);
     this.heapifyUp(this.heap.length - 1);
   }
 
-  dequeue(): T | undefined {
+  dequeue() {
     if (this.heap.length === 0) return undefined;
 
-    const max = this.heap[0];
-
+    const min = this.heap[0];
     this.heap[0] = this.heap.pop()!;
     this.heapifyDown(0);
 
-    return max;
+    return min;
   }
 
-  peek(): T | undefined {
+  peek() {
     return this.heap[0];
   }
 
-  isEmpty(): boolean {
+  isEmpty() {
     return this.heap.length === 0;
   }
 
-  size(): number {
+  size() {
     return this.heap.length;
   }
 }
 
-/**
- * MinPriorityQueue : The smallest element is always at the top(root)
- */
-// Helper function to maintain the min-heap property
-export class MinPriorityQueue<T = number> {
+export class MinPriorityQueue2<T = number> {
   private heap: T[] = [];
   private priority: (x: T) => number;
 
