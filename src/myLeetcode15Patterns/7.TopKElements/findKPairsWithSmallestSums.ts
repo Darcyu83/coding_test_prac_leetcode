@@ -147,7 +147,7 @@ class BinaryMinHeap<T> {
     this.compare = compareFn;
   }
 
-  pop(): T | undefined {
+  dequeue(): T | undefined {
     if (this.heap.length < 2) {
       return this.heap.pop();
     }
@@ -161,7 +161,7 @@ class BinaryMinHeap<T> {
     return samllest;
   }
 
-  push(value: T): number {
+  enqueue(value: T): number {
     const length = this.heap.push(value);
     this.bubbleUp(this.heap, this.compare, length - 1);
     return length;
@@ -263,16 +263,16 @@ export function kSmallestPairsRecap(
   const M = Math.min(nums2.length, k);
 
   for (let i = 0; i < N; i++) {
-    minHeap.push([nums1[i] + nums2[0], nums1[i], 0]);
+    minHeap.enqueue([nums1[i] + nums2[0], nums1[i], 0]);
   }
 
   while (k-- > 0 && minHeap.heap.length > 0) {
-    const [sum, nums1Value, nums2Index] = minHeap.pop()!;
+    const [sum, nums1Value, nums2Index] = minHeap.dequeue()!;
 
     result.push([nums1Value, sum - nums1Value]);
 
     if (nums2Index + 1 < M) {
-      minHeap.push([
+      minHeap.enqueue([
         nums1Value + nums2[nums2Index + 1],
         nums1Value,
         nums2Index + 1,
