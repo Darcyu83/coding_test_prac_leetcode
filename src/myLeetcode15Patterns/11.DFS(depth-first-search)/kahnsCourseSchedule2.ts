@@ -153,6 +153,7 @@ function findOrder(numCourses: number, prerequisites: number[][]): number[] {
       if (isReadyToTake) queue.push(course);
     }
   }
+  
   return order.length === numCourses ? order : [];
 }
 
@@ -161,5 +162,38 @@ function findOrderRecap(
   numCourses: number,
   prerequisites: number[][]
 ): number[] {
-  return [];
+  const prereq = new Map<number, number[]>();
+  // for (let i = 0; i < numCourses; i++) {
+  //   prereq.set(i, []);
+  // }
+
+  for (const [course, pre] of prerequisites) {
+    if (!prereq.has(course)) prereq.set(course, []);
+    prereq.get(course)?.push(pre);
+  }
+
+  const output: number[] = [];
+  const visited = new Set<number>();
+  const cycle = new Set<number>();
+
+  function dfs(course: number) {
+    if (cycle.has(course)) return false;
+    if (visited.has(course)) return true;
+
+    cycle.add(course);
+    for (const pre of prereq.get(course)!) {
+      if (!dfs(pre)) return false;
+    }
+
+    cycle.delete(course);
+    visited.add(course);
+    output.push(course);
+    return true;
+  }
+
+  for (let i = 0; i < numCourses; i++) {
+    if (!dfs(i)) return [];
+  }
+
+  return output;
 }

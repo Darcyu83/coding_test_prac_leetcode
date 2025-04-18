@@ -282,3 +282,101 @@ export function kSmallestPairsRecap(
 
   return result;
 }
+
+export function findKPairsWithSmallestSum() {
+  let nums1 = [1, 7, 11],
+    nums2 = [2, 4, 6],
+    k = 3;
+
+  const minHeap: { sum: number; num1: number; num2Idx: number }[] = [];
+  for (let i = 0; i < k; i++) {
+    minHeap.push({ sum: nums1[i] + nums2[0], num1: nums1[i], num2Idx: 0 });
+  }
+
+  for (let i = Math.floor(minHeap.length / 2); i >= 0; i--) {
+    let currIdx = i;
+
+    while (currIdx < minHeap.length) {
+      let smallest = currIdx;
+      let leftIdx = currIdx * 2 + 1;
+      let rightIdx = currIdx * 2 + 2;
+
+      if (
+        leftIdx < minHeap.length &&
+        minHeap[leftIdx].sum < minHeap[currIdx].sum
+      ) {
+        smallest = leftIdx;
+      }
+
+      if (
+        rightIdx < minHeap.length &&
+        minHeap[rightIdx].sum < minHeap[currIdx].sum
+      ) {
+        smallest = rightIdx;
+      }
+
+      if (smallest === currIdx) break;
+
+      [minHeap[smallest], minHeap[currIdx]] = [
+        minHeap[currIdx],
+        minHeap[smallest],
+      ];
+
+      currIdx = smallest;
+    }
+  }
+
+  const result = [];
+  while (k-- > 0 && minHeap.length > 0) {
+    const { sum, num1, num2Idx } = minHeap[0];
+
+    minHeap[0] = minHeap.pop()!;
+    let currIdx = 0;
+    while (currIdx < minHeap.length) {
+      let smallest = currIdx;
+      let leftIdx = currIdx * 2 + 1;
+      let rightIdx = currIdx * 2 + 2;
+
+      if (leftIdx < minHeap.length && minHeap[leftIdx] < minHeap[smallest]) {
+        smallest = leftIdx;
+      }
+
+      if (rightIdx < minHeap.length && minHeap[rightIdx] < minHeap[smallest]) {
+        smallest = rightIdx;
+      }
+
+      if (smallest === currIdx) break;
+
+      [minHeap[smallest], minHeap[currIdx]] = [
+        minHeap[currIdx],
+        minHeap[smallest],
+      ];
+
+      currIdx = smallest;
+    }
+
+    result.push([num1, sum - num1]);
+
+    if (num2Idx + 1 < nums2.length) {
+      minHeap.push({
+        sum: num1 + nums2[num2Idx + 1],
+        num1: num1,
+        num2Idx: num2Idx + 1,
+      });
+
+      let currIdx = minHeap.length - 1;
+      while (currIdx > 0) {
+        let parentIdx = Math.floor((currIdx - 1) / 2);
+        if (minHeap[parentIdx].sum < minHeap[currIdx].sum) break;
+
+        [minHeap[parentIdx], minHeap[currIdx]] = [
+          minHeap[currIdx],
+          minHeap[parentIdx],
+        ];
+
+        currIdx = parentIdx;
+      }
+    }
+  }
+  return result;
+}

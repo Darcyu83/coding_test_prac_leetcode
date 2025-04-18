@@ -3,6 +3,7 @@
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
 import { checkSubarraySum } from "./src/myLeetcode15Patterns/1.PrefixSum/continuousSubArraySum";
+import { findKPairsWithSmallestSum } from "./src/myLeetcode15Patterns/7.TopKElements/findKPairsWithSmallestSums";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 import { TreeNode } from "./src/utils/treeNode";
 
@@ -217,3 +218,5 @@ console.log(
   "checkSubarraySum ==== ",
   checkSubarraySum([5, 2, 3, 1, 6, 4, 2, 7, 1, 9, 8], 5)
 );
+
+console.log(findKPairsWithSmallestSum());
