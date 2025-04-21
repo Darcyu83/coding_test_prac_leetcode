@@ -26,13 +26,13 @@ function levelOrderBFS(root: TreeNode | null): number[][] {
   return result;
 }
 
-// DFS
+// BFS
 // keeping track of the depth level
 // works fine for small or balanced trees but is not as efficient in deep or skewed trees due to recursion depth limits
 function levelOrderRecursive(root: TreeNode | null): number[][] {
   const result: number[][] = [];
 
-  function dfs(node: TreeNode | null, level: number) {
+  function bfs(node: TreeNode | null, level: number) {
     if (!node) return;
     if (!result[level]) {
       result[level] = [];
@@ -41,11 +41,11 @@ function levelOrderRecursive(root: TreeNode | null): number[][] {
     result[level].push(node.val);
 
     level++;
-    dfs(node.left, level);
-    dfs(node.right, level);
+    bfs(node.left, level);
+    bfs(node.right, level);
   }
 
-  dfs(root, 0);
+  bfs(root, 0);
   return result;
 }
 

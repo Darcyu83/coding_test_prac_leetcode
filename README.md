@@ -4,6 +4,13 @@ This project is using nodemon with typescript
 
 npm start then you can see log in your terminal.
 
+## leetcode Nested library
+
+npm install --save datastructures-js
+
+- MaxPriorityQueue etc.
+  const queue = new MaxPriorityQueue()
+
 ## Javascript Algorithms : First
 
 url : https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#functional-programming
