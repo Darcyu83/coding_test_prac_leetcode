@@ -3,6 +3,7 @@
 
 import { makeLottery5GamesWithoutNumbersInFirstGame } from "./src/lottery/utils";
 import { checkSubarraySum } from "./src/myLeetcode15Patterns/1.PrefixSum/continuousSubArraySum";
+import { largestRectagleAreaWithAnalysis } from "./src/myLeetcode15Patterns/6.MonotonicStack/largestRectagleInHistogram";
 import { findKPairsWithSmallestSum } from "./src/myLeetcode15Patterns/7.TopKElements/findKPairsWithSmallestSums";
 import { eraseOverlapIntervals } from "./src/myLeetcode15Patterns/8.OverlappingIntervals/nonOverlappingIntervals";
 import { TreeNode } from "./src/utils/treeNode";
@@ -219,4 +220,7 @@ console.log(
   checkSubarraySum([5, 2, 3, 1, 6, 4, 2, 7, 1, 9, 8], 5)
 );
 
-console.log(findKPairsWithSmallestSum());
+// console.log(findKPairsWithSmallestSum());
+
+let heights = [2, 4, 5, 3, 1];
+largestRectagleAreaWithAnalysis(heights);
